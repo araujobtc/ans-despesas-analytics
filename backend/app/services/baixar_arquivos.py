@@ -8,9 +8,10 @@ OPERADORAS_PATH = "operadoras_acreditadas"
 OPERADORAS_FILE = "operadoras_acreditadas.csv"
 
 DATA_PATH = "data/ans"
+DOWNLOAD_PATH = os.path.join(DATA_PATH, "download")
 
 # Certifica que a pasta de download existe
-os.makedirs(DATA_PATH, exist_ok=True)
+os.makedirs(DOWNLOAD_PATH, exist_ok=True)
 
 
 def listar_pastas(url):
@@ -61,7 +62,7 @@ def baixar_arquivos_ultimos_trimestres(quantidade=3):
                 break
 
             download_url = f"{ano_url}{zip_file}"
-            caminho_local = os.path.join(DATA_PATH, zip_file)
+            caminho_local = os.path.join(DOWNLOAD_PATH, zip_file)
 
             if not os.path.exists(caminho_local):
                 print(f"Baixando {download_url} ...")
@@ -101,7 +102,7 @@ def baixar_operadoras_acreditadas():
         )
 
     download_url = f"{base_operadoras_url}{OPERADORAS_FILE}"
-    caminho_local = os.path.join(DATA_PATH, OPERADORAS_FILE)
+    caminho_local = os.path.join(DOWNLOAD_PATH, OPERADORAS_FILE)
 
     if os.path.exists(caminho_local):
         print(f"Arquivo já existe: {caminho_local}")
